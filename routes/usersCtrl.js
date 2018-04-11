@@ -5,12 +5,12 @@ var models = require('../models');
 var asyncLib = require('async')
 
 //Constants
+const req = require('request')
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 //Routes
 module.exports = {
     register: (req, res) => {
-        //params front to back mapping
 
         var id_user = req.body.id_user
         var name_user = req.body.name_user
@@ -130,7 +130,7 @@ module.exports = {
             (userFound, done) => {
                 if (userFound) {
                     bcrypt.compare(password_user, userFound.password_user, (errBcrypt, resBcrypt) => {
-                        done(null, userFound, resBycrypt);
+                        done(null, userFound, resBcrypt);
                     })
                 } else {
                     return res.status(404).json({
@@ -160,9 +160,27 @@ module.exports = {
             }
         })
     },
-    getUserProfile: () => {
+    getUserProfile: (req, res) => {
+        var headerAuth = req.headers['authorization'];
+        var id_user = jwtUtils.getUserId(headerAuth);
+        if(id_user < 0)
+            return res.status(400).json({'error': 'wrong token'});
 
+        models.User.findOne({
+            attributes:['id_user', 'email_user', 'firstName_user', 'name_user' ],
+            where:{ id_user: id_user }
+        }).then((user)=>{
+            if(user){
+                res.status(201).json(user);
+            }else{
+                res.status(404).json({'error' : 'user not found'});
+            }
+        }).catch(()=>{
+            res.status(500).json({'error': 'cannot fetch user'});
+        })
     }
+    
+
 
 
 }
