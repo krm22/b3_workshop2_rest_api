@@ -5,7 +5,16 @@ module.exports = (sequelize, DataTypes) => {
     id_role: DataTypes.INT(11)
   }, {});
   Possesses.associate = function(models) {
-    // associations can be defined here
+    models.Possesses.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    }),
+    models.Possesses.belongsTo(models.Roles, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
   };
   return Possesses;
 };

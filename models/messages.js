@@ -9,6 +9,17 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Messages.associate = function(models) {
     // associations can be defined here
+    models.Message.belongsTo(models.Users, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
+    models.Message.belongsTo(models.Chats, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
+
   };
   return Messages;
-};
+}

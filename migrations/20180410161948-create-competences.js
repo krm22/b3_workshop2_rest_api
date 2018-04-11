@@ -2,16 +2,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Competences', {
-      id: {
+      id_competence: {
+        type: Sequelize.INT(11),
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id_competence: {
-        type: Sequelize.INT(11)
+        primaryKey: true
       },
       label_competence: {
+        allowNull: false,
         type: Sequelize.VARCHAR(255)
       },
       createdAt: {

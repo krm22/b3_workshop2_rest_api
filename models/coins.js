@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     value_coin: DataTypes.INT(11)
   }, {});
   Coins.associate = function(models) {
-    // associations can be defined here
+    models.Coins.hasMany(models.Transaction)
   };
   return Coins;
 };

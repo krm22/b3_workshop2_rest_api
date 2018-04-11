@@ -2,20 +2,29 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Coaches', {
-      id: {
+      id_coach: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id_coach: {
         type: Sequelize.INT(11)
       },
       label_coach: {
+        allowNull: true,
         type: Sequelize.VARCHAR(255)
       },
       id_user: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: 'Users',
+        key: 'id_users' 
+      },
+      id_competences: {
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: {
+          model: 'Competences',
+          key: 'id_competences'
+        }
       },
       createdAt: {
         allowNull: false,

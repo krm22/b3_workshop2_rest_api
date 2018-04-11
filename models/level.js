@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     value_level: DataTypes.INT(11)
   }, {});
   Level.associate = function(models) {
-    // associations can be defined here
+    models.Level.hasMany(models.Requests)
   };
   return Level;
 };

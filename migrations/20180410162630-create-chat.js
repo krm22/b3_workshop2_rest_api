@@ -2,17 +2,15 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Chats', {
-      id: {
+      id_chat: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id_chat: {
         type: Sequelize.INT(11)
       },
       label_chat: {
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.VARCHAR(255),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

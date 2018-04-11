@@ -2,29 +2,28 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Users', {
-      id: {
+      id_user:{
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id_user: {
-        type: Sequelize.INT
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       name_user: {
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.VARCHAR(255),
+        allowNull: false
       },
       firstName_user: {
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.VARCHAR(255),
+        allowNull: false
       },
       password_user: {
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.VARCHAR(255),
+        allowNull: false
       },
       email_user: {
-        type: Sequelize.VARCHAR(255)
-      },
-      id_coach: {
-        type: Sequelize.INT(11)
+        type: Sequelize.VARCHAR(255),
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

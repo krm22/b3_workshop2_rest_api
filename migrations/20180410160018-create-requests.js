@@ -2,26 +2,35 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Requests', {
-      id: {
+      id_request: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      id_request: {
         type: Sequelize.INT(11)
       },
       title_request: {
+        allowNull: false,
         type: Sequelize.VARCHAR(255)
       },
       message_request: {
+        allowNull: false,
         type: Sequelize.VARCHAR(255)
       },
       id_user: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references:{
+          model: 'Users',
+          key: 'id_user'
+        }
       },
       id_level: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references:{
+          model: 'Levels',
+          key: 'id_level'
+        }
       },
       createdAt: {
         allowNull: false,

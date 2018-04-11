@@ -8,7 +8,22 @@ module.exports = (sequelize, DataTypes) => {
     id_coin: DataTypes.INT(11)
   }, {});
   Transaction.associate = function(models) {
-    // associations can be defined here
+
+    models.Transaction.belongsTo(models.Coach, {
+      foreignKey: {
+        allowNull: false
+      }
+    }),
+    models.Transaction.belongsTo(models.Projects, {
+      foreignKey: {
+        allowNull: false
+      }
+    }),
+    models.Transaction.belongsTo(models.Coins, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
   };
   return Transaction;
 };

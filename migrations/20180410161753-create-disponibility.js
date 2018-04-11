@@ -2,26 +2,31 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Disponibilities', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       id_disponibility: {
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true,
         type: Sequelize.INT(11)
       },
       day_disponibility: {
+        allowNull: false,
         type: Sequelize.DATE
       },
       timeStart_disponibility: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       timeEnd_disponibility: {
+        allowNull: false,
         type: Sequelize.TIME
       },
       id_coach: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: {
+          model: 'Coach',
+          key: 'id_coach'
+        }
       },
       createdAt: {
         allowNull: false,

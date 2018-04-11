@@ -9,10 +9,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_coach: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        reference: {
+          model: 'Coachs',
+          key: 'id_coach'
+        }
       },
       id_project: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        reference: {
+          model: 'Projects',
+          key: 'id_project'
+        }
       },
       createdAt: {
         allowNull: false,

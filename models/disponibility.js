@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     id_coach: DataTypes.INT(11)
   }, {});
   Disponibility.associate = function(models) {
-    // associations can be defined here
-  };
+    models.Disponibility.belongsTo(Coach, {
+      foreignKey: {
+        allowNull: false
+      }
+     }),
+     models.Disponibility.hasMany(models.Meeting)
+   };
   return Disponibility;
 };

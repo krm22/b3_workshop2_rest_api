@@ -9,19 +9,36 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       label_meeting: {
+        allowNull: false,
         type: Sequelize.VARCHAR(255)
       },
       place_meeting: {
+        allowNull: false,
         type: Sequelize.VARCHAR(255)
       },
       id_user: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: {
+          model: 'Users',
+          key: 'id_user'
+        }
       },
       id_coach: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: {
+          model: 'Coach',
+          key: 'id_coach'
+        }
       },
       id_disponibility: {
-        type: Sequelize.INT(11)
+        allowNull: false,
+        type: Sequelize.INT(11),
+        references: {
+          model: 'Disponibility',
+          key: 'id_disponibility'
+        }
       },
       createdAt: {
         allowNull: false,

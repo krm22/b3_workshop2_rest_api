@@ -1,7 +1,7 @@
 //Imports 
 var express = require ('express');
 var bodyparser = require('body-parser');
-// var apiRouter = require('./apiRouter').router;
+ var apiRouter = require('./apiRouter').router;
 
 //Instantiate Server
 var server = express();
@@ -16,7 +16,7 @@ server.get('/', (req, res)=>{
     res.status(200).send('<h1>You are being served by the mqlkt workshop team, biatch!<h2>');
 });
 
-// server.use('/api/', apiRouter);
+ server.use('/api/', apiRouter);
 
 //Launch Server
 server.listen(9999,()=>{

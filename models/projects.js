@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     name_project: DataTypes.VARCHAR(255)
   }, {});
   Projects.associate = function(models) {
-    // associations can be defined here
+    models.Projects.hasMany(models.Transaction),
+    models.Projects.hasMany(models.Access)
   };
   return Projects;
 };

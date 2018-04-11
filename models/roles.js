@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     label_role: DataTypes.VARCHAR(255)
   }, {});
   Roles.associate = function(models) {
-    // associations can be defined here
+    models.Role.hasMany(models.Possesses)
   };
   return Roles;
 };

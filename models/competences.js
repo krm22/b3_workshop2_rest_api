@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     label_competence: DataTypes.VARCHAR(255)
   }, {});
   Competences.associate = function(models) {
-    // associations can be defined here
+    models.Competences.hasMany(models.Coach)
   };
   return Competences;
 };

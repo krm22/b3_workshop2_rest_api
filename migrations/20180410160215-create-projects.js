@@ -2,17 +2,17 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Projects', {
-      id: {
-        allowNull: false,
+      id_project: {
+        type: Sequelize.INT(11),
         autoIncrement: true,
+        allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id_project: {
-        type: Sequelize.INT(11)
-      },
       name_project: {
-        type: Sequelize.VARCHAR(255)
+        allowNull: false,
+        type: Sequelize.VARCHAR(255),
+        unique: true
       },
       createdAt: {
         allowNull: false,

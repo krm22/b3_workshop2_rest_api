@@ -8,7 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     id_level: DataTypes.INT(11)
   }, {});
   Requests.associate = function(models) {
-    // associations can be defined here
+    models.Requests.belongsTo(models.Users, {
+          foreignKey: {
+          allowNull: false
+        }
+    }),
+    models.Requests.belongsTo(models.Levels, {
+          foreignKey: {
+          allowNull: false
+        }
+    })
   };
   return Requests;
 };

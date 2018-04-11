@@ -6,6 +6,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Assigned.associate = function(models) {
     // associations can be defined here
+    models.Asigned.belongsTo(models.Coach, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
+    models.Asigned.belongsTo(models.Projects, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
   };
   return Assigned;
 };

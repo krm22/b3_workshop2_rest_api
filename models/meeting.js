@@ -8,7 +8,21 @@ module.exports = (sequelize, DataTypes) => {
     id_disponibility: DataTypes.INT(11)
   }, {});
   Meeting.associate = function(models) {
-    // associations can be defined here
+    models.Meeting.belongsTo(models.Users,{
+      foriegnKey: {
+        allowNull: false
+      }
+    }),
+    models.Meeting.belongsTo(models.Coach,{
+      foriegnKey: {
+        allowNull: false
+      }
+    }),
+    models.Meeting.belongsTo(models.Disponibility,{
+      foriegnKey: {
+        allowNull: false
+      }
+    })
   };
   return Meeting;
 };
