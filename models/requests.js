@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     id_level: DataTypes.INTEGER(11)
   }, {});
   Requests.associate = function(models) {
-    models.Requests.belongsTo(models.Users, {
+    models.Requests.belongsTo(models.User, {
           foreignKey: {
           allowNull: false
         }
     }),
-    models.Requests.belongsTo(models.Levels, {
+    models.Requests.belongsTo(models.Level, {
           foreignKey: {
           allowNull: false
         }

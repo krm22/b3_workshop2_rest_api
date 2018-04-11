@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Messages = sequelize.define('Messages', {
+  var Messages = sequelize.define('Message', {
     id_message: DataTypes.INTEGER(11),
     title_message: DataTypes.STRING(255),
     content_message: DataTypes.TEXT,
@@ -9,12 +9,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Messages.associate = function(models) {
     // associations can be defined here
-    models.Message.belongsTo(models.Users, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-    models.Message.belongsTo(models.Chats, {
+    models.Message.belongsTo(models.User)
+    models.Message.belongsTo(models.Chat, {
       foreignKey: {
         allowNull: false
       }

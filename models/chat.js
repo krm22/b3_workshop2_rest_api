@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     label_chat: DataTypes.STRING(255)
   }, {});
   Chat.associate = function(models) {
-    models.Chat.hasMany(models.Messages)
+    models.Chat.hasMany(models.Message)
   };
   return Chat;
 };

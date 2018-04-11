@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function(models) {
      models.User.hasMany(models.Access),
      models.User.hasMany(models.Possesses),
-     models.User.hasMany(models.Messages),
+     models.User.hasMany(models.Message),
      models.User.hasMany(models.Requests),
      models.User.hasOne(models.Coach, {
        foreignKey: 'id_coach'
