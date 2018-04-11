@@ -5,16 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     id_project: DataTypes.INT(11)
   }, {});
   Access.associate = function(models) {
-    models.Access.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
-    models.Access.belongsTo(models.Projects, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
+    models.Access.hasMany(models.Users)
+    models.Access.hasMany(models.Projects)
   };
   return Access;
 };
