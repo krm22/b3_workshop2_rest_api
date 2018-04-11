@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Coach = sequelize.define('Coach', {
-    id_coach: DataTypes.INT(11),
-    label_coach: DataTypes.VARCHAR(255),
-    id_user: DataTypes.INT(11),
-    id_competence: DataTypes.INT(11)
+    id_coach: DataTypes.INTEGER(11),
+    label_coach: DataTypes.STRING(255),
+    id_user: DataTypes.INTEGER(11),
+    id_competence: DataTypes.INTEGER(11)
   }, {});
   Coach.associate = function(models) {
    models.Coach.hasMany(models.Assigned),
@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
      }
    })
    models.Coach.hasMany(models.Disponibility),
-   models.Coach.hasMany(models.Meetings),
-   models.Coach.hasMany(models.Transactions),
-   models.Coach.belongsTo(models.Users, {
+   models.Coach.hasMany(models.Meeting),
+   models.Coach.hasMany(models.Transaction),
+   models.Coach.belongsTo(models.User, {
     foriegnKey: {
       allowNull: false
      }

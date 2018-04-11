@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Projects = sequelize.define('Projects', {
-    id_project: DataTypes.INT(11),
-    name_project: DataTypes.VARCHAR(255)
+    id_project: DataTypes.INTEGER(11),
+    name_project: DataTypes.STRING(255)
   }, {});
   Projects.associate = function(models) {
     models.Projects.hasMany(models.Transaction),

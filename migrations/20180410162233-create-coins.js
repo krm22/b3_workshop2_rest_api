@@ -6,15 +6,15 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       label_coin: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.STRING(255)
       },
       value_coin: {
         allowNull: false,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       createdAt: {
         allowNull: false,

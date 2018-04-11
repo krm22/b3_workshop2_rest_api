@@ -6,7 +6,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       day_disponibility: {
         allowNull: false,
@@ -22,7 +22,7 @@ module.exports = {
       },
       id_coach: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           model: 'Coach',
           key: 'id_coach'

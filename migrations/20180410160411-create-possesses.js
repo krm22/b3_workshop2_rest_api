@@ -10,7 +10,7 @@ module.exports = {
       },
       id_user: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           models: 'Users',
           key: 'id_user'
@@ -18,7 +18,7 @@ module.exports = {
       },
       id_role: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           models: 'Roles',
           key: 'id_role'

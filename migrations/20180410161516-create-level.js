@@ -10,11 +10,11 @@ module.exports = {
       },
       label_level: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.STRING(255)
       },
       value_level: {
         allowNull: false,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       createdAt: {
         allowNull: false,

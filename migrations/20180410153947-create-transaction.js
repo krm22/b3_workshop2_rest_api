@@ -10,7 +10,7 @@ module.exports = {
       },
       value_transaction: {
         allowNull: false,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       date_transaction: {
         allowNull: false,
@@ -18,7 +18,7 @@ module.exports = {
       },
       id_coach: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           model: 'Coach',
           key: 'id_coach'
@@ -26,7 +26,7 @@ module.exports = {
       },
       id_project: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           model: 'Projects',
           key: 'id_project'
@@ -34,7 +34,7 @@ module.exports = {
       },
       id_coin: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           model: 'Coins',
           key: 'id_coin'

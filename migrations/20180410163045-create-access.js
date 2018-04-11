@@ -9,12 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_user: {
+        type: Sequelize.INTEGER(11),
         allowNull: false,
-        type: Sequelize.INT(11)
       },
       id_project: {
+        type: Sequelize.INTEGER(11),
         allowNull: false,
-        type: Sequelize.INT(11)
       },
       createdAt: {
         allowNull: false,
