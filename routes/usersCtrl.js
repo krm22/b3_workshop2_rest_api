@@ -1,7 +1,7 @@
 //Imports 
 var bcrypt = require('bcrypt');
 //var jwtUtils = require('../utils/jwt.utils')
-//var models = require('../models');
+var models = require('../models');
 
 //Routes
 module.exports = {
@@ -20,28 +20,26 @@ module.exports = {
                 'error': 'missing parameters'
            });
        }
-         
       // Todo:  verify psuedo length, mail regex, password etc 
-
         models.User.findOne({
-            attributes: [''],
-            where: { surname_people: surname }
+            attributes: ['email_user'],
+            where: { email_user: email_user }
         })
         .then((userFound)=>{
             if(!userFound) {
 
-                bcrypt.hash(surname, 5, (err, bcryptedPassword)=>{
+                bcrypt.hash(password_user, 5, (err, bcryptedPassword)=>{
                     var newUser = models.People.create({
                         //backend to front-end object mapping
-                        id_people: id,
-                        firstname_people : firstname,
-                        surname_people : bcryptedPassword,
-                        id_nationality_people : idnatpeople,
-                        isAdmin: 0 
+                        id_user : id_user,
+                        name_user: name_user,
+                        firstName_user: firstName_user,
+                        password_user: bcryptedPassword,
+                        email_user: email_user
                     })
                     .then((newUser)=>{
                         return res.status(201).json({
-                            'id_people': newUser.id
+                            'id_user': newUser.id
                         })
                     })
                     .catch(()=>{

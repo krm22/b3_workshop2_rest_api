@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       label_coach: {
         allowNull: true,
@@ -14,13 +14,13 @@ module.exports = {
       },
       id_user: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: 'Users',
         key: 'id_users' 
       },
       id_competences: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references: {
           model: 'Competences',
           key: 'id_competences'

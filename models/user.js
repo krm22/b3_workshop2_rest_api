@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    id_user: DataTypes.INT,
-    name_user: DataTypes.VARCHAR(255),
-    firstName_user: DataTypes.VARCHAR(255),
-    password_user: DataTypes.VARCHAR(255),
-    email_user: DataTypes.VARCHAR(255)
+    id_user: DataTypes.INTEGER(),
+    name_user: DataTypes.STRING(255),
+    firstName_user: DataTypes.STRING(255),
+    password_user: DataTypes.STRING(255),
+    email_user: DataTypes.STRING(255)
   }, {});
   User.associate = function(models) {
      models.User.hasMany(models.Access),

@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Roles = sequelize.define('Roles', {
-    id_role: DataTypes.INT(11),
-    label_role: DataTypes.VARCHAR(255)
+    id_role: DataTypes.INTEGER(11),
+    label_role: DataTypes.STRING(255)
   }, {});
   Roles.associate = function(models) {
     models.Role.hasMany(models.Possesses)

@@ -3,7 +3,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Projects', {
       id_project: {
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = {
       },
       name_project: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255),
+        type: Sequelize.STRING(255),
         unique: true
       },
       createdAt: {

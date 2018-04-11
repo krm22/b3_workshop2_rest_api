@@ -3,14 +3,14 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Messages', {
       id_message: {
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
       title_message: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.STRING(255)
       },
       content_message: {
         allowNull: false,
@@ -18,7 +18,7 @@ module.exports = {
       },
       id_user: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references:{
           model:'Users',
           key: 'id_user'
@@ -26,7 +26,7 @@ module.exports = {
       },
       id_chat: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references:{
           model:'Chats',
           key: 'id_user'

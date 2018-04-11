@@ -6,19 +6,19 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INT(11)
+        type: Sequelize.INTEGER(11)
       },
       title_request: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.STRING(255)
       },
       message_request: {
         allowNull: false,
-        type: Sequelize.VARCHAR(255)
+        type: Sequelize.STRING(255)
       },
       id_user: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references:{
           model: 'Users',
           key: 'id_user'
@@ -26,7 +26,7 @@ module.exports = {
       },
       id_level: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         references:{
           model: 'Levels',
           key: 'id_level'

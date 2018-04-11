@@ -10,7 +10,7 @@ module.exports = {
       },
       id_coach: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         reference: {
           model: 'Coachs',
           key: 'id_coach'
@@ -18,7 +18,7 @@ module.exports = {
       },
       id_project: {
         allowNull: false,
-        type: Sequelize.INT(11),
+        type: Sequelize.INTEGER(11),
         reference: {
           model: 'Projects',
           key: 'id_project'
