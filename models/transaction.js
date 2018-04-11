@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Transaction = sequelize.define('Transaction', {
+    id:{type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     value_transaction: DataTypes.INTEGER(11),
     date_transaction: DataTypes.DATE(),
     id_coach: DataTypes.INTEGER(11),

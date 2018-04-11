@@ -1,7 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Competences = sequelize.define('Competences', {
-    id_competence: DataTypes.INTEGER(11),
+    id_competence: {type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     label_competence: DataTypes.STRING(255)
   }, {});
   Competences.associate = function(models) {

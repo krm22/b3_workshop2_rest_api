@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Assigned = sequelize.define('Assigned', {
+    id:{type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     id_coach: DataTypes.INTEGER(11),
     id_project: DataTypes.INTEGER(11)
   }, {});

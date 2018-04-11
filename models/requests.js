@@ -1,7 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Requests = sequelize.define('Requests', {
-    id_request: DataTypes.INTEGER(11),
+    id_request: {type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     title_request: DataTypes.STRING(255),
     message_request: DataTypes.STRING(255),
     id_user: DataTypes.INTEGER(11),
