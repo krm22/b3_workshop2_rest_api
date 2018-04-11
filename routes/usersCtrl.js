@@ -7,7 +7,7 @@ var models = require('../models');
 module.exports = {
     register: (req, res) =>{
        //params front to back mapping
-       
+
        var id_user = req.body.id_user
        var name_user = req.body.name_user 
        var firstName_user  = req.body.firstName_user 
@@ -25,7 +25,7 @@ module.exports = {
             attributes: ['email_user'],
             where: { email_user: email_user }
         })
-        .then((userFound)=>{
+        .then((userFound) => {
             if(!userFound) {
                 bcrypt.hash(password_user, 5, (err, bcryptedPassword)=>{
                     var newUser = models.User.create({
@@ -37,48 +37,48 @@ module.exports = {
                         email_user: email_user
                     })
                     .then((newUser)=>{ 
+                        console.log(this.newUser)
                         return res.status(201).json({
-                            'id_user': newUser.id
+                            'id_user': newUser.id_user
                         })
                     })
                     .catch(()=>{
-                        return res.status(500).json({ 'error': 'cannot add  user'})
+                        return res.status(500).json({ 'error': 'cannot add user'})
                     });
                 });
           } else {
               return res.status(400).json({'error': 'user already exits'})
           }
         })
-        .catch((err)=>{
+        .catch((err)=> {
             return res.status(500).json({
                 'error': 'unable to verify user'
             });
         })
     },
     login: (req, res)=>{
-        
-        //Params
-       var  firstname = req.body.firstname_people;
-       var  surname = req.body.surname_people;
 
-       if (firstname == null || surname == null ){
-        return res.status(400).json({
-             'error': 'missing parameters'
-        });
-       }
+        //Params
+       var  password_user = req.body.password_user;
+       var  email_user = req.body.email_user;
+
+    //    if (password_user == null || email_user == null ){
+    //     return res.status(400).json({
+    //          'error': 'missing parameters'
+    //     });
+    //    }
 
      // Todo:  verify psuedo length, mail regex, password etc 
-
-     models.People.findOne({
-        where: {surname_people: surname}
+     models.User.findOne({
+        where: {email_user: email_user}
      })
      .then((userFound)=>{
         if(userFound) {
 
-            bcrypt.compare(surname, userFound.surname, (errBcrypt, resBcrypt)=>{
+            bcrypt.compare(password_user, userFound.password_user, (errBcrypt, resBcrypt)=>{
                 if(resBcrypt){
                     return res.status(200).json({
-                         'id_people': userFound.id,
+                         'id_user': userFound.id_user,
                          'token': jwtUtils.generateTokenForUser(userFound)
                     })
                 }else {
