@@ -3,6 +3,9 @@ var bcrypt = require('bcrypt');
 var jwtUtils = require('../utils/jwt.utils')
 var models = require('../models');
 
+//Constants
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 //Routes
 module.exports = {
     register: (req, res) =>{
@@ -19,6 +22,19 @@ module.exports = {
                 'error': 'missing parameters'
            });
        }
+
+       if (!EMAIL_REGEX.test(email_user)){
+        return res.status(400).json({
+            'error': 'email is not valid'
+          });
+       }
+
+       if (!PASSWORD_REGEX.test(password_user)){
+        return res.status(400).json({
+            'error': 'password invalid (must have a length of 4 -8 character and include one number )'
+          });
+       }
+
        
       // Todo:  verify psuedo length, mail regex, password etc 
         models.User.findOne({
@@ -62,11 +78,11 @@ module.exports = {
        var  password_user = req.body.password_user;
        var  email_user = req.body.email_user;
 
-    //    if (password_user == null || email_user == null ){
-    //     return res.status(400).json({
-    //          'error': 'missing parameters'
-    //     });
-    //    }
+       if (password_user == null || email_user == null ){
+        return res.status(400).json({
+             'error': 'missing parameters'
+        });
+       }
 
      // Todo:  verify psuedo length, mail regex, password etc 
      models.User.findOne({
