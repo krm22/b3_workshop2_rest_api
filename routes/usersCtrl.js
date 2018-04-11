@@ -8,6 +8,7 @@ var asyncLib = require('async')
 const req = require('request')
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
+
 //Routes
 module.exports = {
     register: (req, res) => {
@@ -17,6 +18,7 @@ module.exports = {
         var firstName_user = req.body.firstName_user
         var password_user = req.body.password_user
         var email_user = req.body.email_user
+        var bio_user = req.body.bio_user
 
         if (email_user == null || password_user == null) {
             return res.status(400).json({
@@ -70,7 +72,8 @@ module.exports = {
                         name_user: name_user,
                         firstName_user: firstName_user,
                         password_user: bcryptedPassword,
-                        email_user: email_user
+                        email_user: email_user,
+                        bio_user : bio_user
                     })
                     .then((newUser) => {
                         done(newUser)
@@ -167,7 +170,7 @@ module.exports = {
             return res.status(400).json({'error': 'wrong token'});
 
         models.User.findOne({
-            attributes:['id_user', 'email_user', 'firstName_user', 'name_user' ],
+            attributes:['id_user', 'email_user', 'firstName_user', 'name_user', 'bio_user' ],
             where:{ id_user: id_user }
         }).then((user)=>{
             if(user){
@@ -178,7 +181,48 @@ module.exports = {
         }).catch(()=>{
             res.status(500).json({'error': 'cannot fetch user'});
         })
-    }
+    },
+    updateUserProfile: (req, res) => {
+        // Getting auth header
+        var headerAuth  = req.headers['authorization'];
+        var id_user  = jwtUtils.getUserId(headerAuth);
+    
+        // Params
+        var bio_user = req.body.bio_user;
+    
+        asyncLib.waterfall([
+         (done)=> {
+            models.User.findOne({
+              attributes: ['id_user', 'bio_user'],
+              where: { id_user : id_user }
+            }).then( (userFound) => {
+              done(null, userFound);
+            })
+            .catch((err) =>{
+              return res.status(500).json({ 'error': 'unable to verify user' });
+            });
+          },
+          (userFound, done) => {
+            if(userFound) {
+              userFound.update({
+                bio_user: (bio_user ? bio_user : userFound.bio_user)
+              }).then(() => {
+                done(userFound);
+              }).catch((err) => {
+                res.status(500).json({ 'error': 'cannot update user' });
+              });
+            } else {
+              res.status(404).json({ 'error': 'user not found' });
+            }
+          },
+        ], (userFound) => {
+          if (userFound) {
+            return res.status(201).json(userFound);
+          } else {
+            return res.status(500).json({ 'error': 'cannot update user profile' });
+          }
+        });
+      }
     
 
 

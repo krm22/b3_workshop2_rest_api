@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     name_user: DataTypes.STRING(255),
     firstName_user: DataTypes.STRING(255),
     password_user: DataTypes.STRING(255),
-    email_user: DataTypes.STRING(255)
+    email_user: DataTypes.STRING(255),
+    bio_user:DataTypes.STRING(255)
   }, { createdAt: false, updatedAt: false});
   User.associate = function(models) {
      models.User.hasMany(models.Access),
