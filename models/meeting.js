@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Meeting = sequelize.define('Meeting', {
+    id:{type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     label_meeting: DataTypes.STRING(255),
     place_meeting: DataTypes.STRING(255),
     id_user: DataTypes.INTEGER(11),

@@ -1,7 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Roles = sequelize.define('Role', {
-    id_role: DataTypes.INTEGER(11),
+    id_role: {type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     label_role: DataTypes.STRING(255)
   }, {});
   Roles.associate = function(models) {

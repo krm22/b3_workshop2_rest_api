@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Possesses = sequelize.define('Possesses', {
+    id:{type:DataTypes.INTEGER(),
+      primaryKey: true,
+      autoIncrement: true },
     id_user: DataTypes.INTEGER(11),
     id_role: DataTypes.INTEGER(11)
   }, {});
