@@ -34,7 +34,7 @@ module.exports = {
 
         if (!PASSWORD_REGEX.test(password_user)) {
             return res.status(400).json({
-                'error': 'password invalid (must have a length of 4 -8 character and include one number )'
+                'error': 'password invalid (must have a length of 4 -8 character and include one number)'
             });
         }
 
@@ -166,6 +166,7 @@ module.exports = {
     getUserProfile: (req, res) => {
         var headerAuth = req.headers['authorization'];
         var id_user = jwtUtils.getUserId(headerAuth);
+       
         if(id_user < 0)
             return res.status(400).json({'error': 'wrong token'});
 

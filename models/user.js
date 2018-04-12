@@ -9,16 +9,22 @@ module.exports = (sequelize, DataTypes) => {
     password_user: DataTypes.STRING(255),
     email_user: DataTypes.STRING(255),
     bio_user:DataTypes.STRING(255)
-  }, { createdAt: false, updatedAt: false});
+  }, { tableName: 'users',
+  createdAt: false, 
+  updatedAt: false });
   User.associate = function(models) {
-     models.User.hasMany(models.Access),
-     models.User.hasMany(models.Possesses),
-     models.User.hasMany(models.Message),
-     models.User.hasMany(models.Requests),
+     models.User.hasMany(models.Access);
+     models.User.belongsToMany(models.Role, {
+      as: 'Roles',
+     through: 'Possesses',
+     foreignKey: 'id_user'
+    });
+     models.User.hasMany(models.Message);
+     models.User.hasMany(models.Requests);
      models.User.hasOne(models.Coach, {
        foreignKey: 'id_coach'
-     })
-     models.User.hasMany(models.Meeting)
+     });
+     models.User.hasMany(models.Meeting);
   };
   return User;
 };

@@ -5,9 +5,15 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true },
     label_role: DataTypes.STRING(255)
-  }, {});
+  }, { tableName: 'roles',
+  createdAt: false, 
+  updatedAt: false  });
   Roles.associate = function(models) {
-    models.Role.hasMany(models.Possesses)
+    models.Role.belongsToMany(models.User, { 
+      as: 'User',
+      through: 'Possesses', 
+    foreignKey: 'id_role'
+  })
   };
   return Roles;
 };

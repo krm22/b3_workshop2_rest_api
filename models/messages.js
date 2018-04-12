@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     id_user: DataTypes.INTEGER(11),
     id_chat: DataTypes.INTEGER(11)
   }, {});
-  Messages.associate = function(models) {
+  Messages.associate = (models) => {
     // associations can be defined here
     models.Message.belongsTo(models.User)
     models.Message.belongsTo(models.Chat, {
